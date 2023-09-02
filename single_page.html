@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <h1>Simple Web Zephyr</h1>
+    <h2 id="status">Not Connected</h2>
+    <button id="connect">CONNECT</button>
+    <input id="colorpicker" type="color">
+</html>
+
+<script>
+
+const SIMPLE_IO_SERVICE = '13e779a0-bb72-43a4-a748-9781b918258c';
+const SIMPLE_IO_RGB_CHAR = '4332aca6-6d71-4173-9945-6653b6c684a0';
+const SIMPLE_IO_ID_CHAR = 'b749d964-4efb-408a-82ad-7495e8af8d6d';
+const SIMPLE_IO_BUTTON_CHAR = '030de9cf-ce4b-44d0-8aa2-1db9185dc069';
+
+let rgbCharacteristic = null;
+let statusElement = null;
+
+const setRGB = (r, g, b) => {
+    if (rgbCharacteristic) {
+        rgbCharacteristic.writeValueWithoutResponse(new Uint8Array([r, g, b]));
+    }
+}
+
+const hexToRGB = hex => hex.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
+
+const handleColorPicker = (evt) => {
+    const hexcolor = evt.target.value;
+    setRGB(...hexToRGB(hexcolor));
+}
+
+const startButtonNotifications = async (service) => {
+    const characteristic = await service.getCharacteristic(SIMPLE_IO_BUTTON_CHAR);
+    characteristic.addEventListener('characteristicvaluechanged', (evt) => {
+        const value = evt.target.value.getUint8(0);
+        console.log(`Button = ${value}`);
+        statusElement.innerHTML = `Button ${value === 0 ? "released" : "pressed"}`;
+    });
+    return characteristic.startNotifications();
+}
+
+const fetchRGBCharacteristic = async (service) => {
+    rgbCharacteristic = await service.getCharacteristic(SIMPLE_IO_RGB_CHAR);
+}
+
+const openDevice = async (device) => {
+    const server = await device.gatt.connect();
+    
+    try {
+        const service = await server.getPrimaryService(SIMPLE_IO_SERVICE);
+
+        await startButtonNotifications(service);
+        await fetchRGBCharacteristic(service);
+
+        console.log('Connected to device', device);
+        statusElement.innerHTML = `Connected to ${device.name}`
+
+        device.ongattserverdisconnected = _ => {
+            console.log(`Disconnected ${device.id}`);
+            statusElement.innerHTML = "Not Connected";
+        };
+    } catch (err) {
+        console.warn(err);
+    }
+}
+
+const scan = async () => {
+    try {
+        const device = await navigator.bluetooth.requestDevice({
+            filters: [{ services: [SIMPLE_IO_SERVICE] }]
+        });
+
+        await openDevice(device);
+    } catch (err) {
+        // ignore if we didn't get a device
+    }
+}
+
+const init = () => {
+    document.querySelector('#connect').addEventListener('click', scan);
+    document.querySelector('#colorpicker').addEventListener('input', handleColorPicker);
+    statusElement = document.querySelector('#status');
+
+}
+
+window.addEventListener('load', init);
+
+</script>
+
