@@ -126,7 +126,6 @@ void handle_button_event(struct k_work *work)
 }
 #endif
 
-
 /* Breathing light step duration*/
 #define SLEEP_MS 10
 
@@ -198,6 +197,7 @@ int main(void)
 
 	bt_ready();
 
+    /* Loop for the breathing/fading lights */
 	while (1) {
 		k_msleep(SLEEP_MS);
 		if (breathing_light != BREATHING_LIGHT_OFF) {
