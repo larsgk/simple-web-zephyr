@@ -24,7 +24,7 @@ cd simple-web-zephyr
 There are a few scripts for building and flashing the nRF52840 Dongle - run them in this order:
 
 ```shell
-build_application.sh
+compile_app.sh
 create_flash_package.sh
 flash_dongle.sh
 ```
