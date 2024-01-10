@@ -110,12 +110,12 @@ void button_pressed(const struct device *dev, struct gpio_callback *cb,
 void handle_button_event(struct k_work *work)
 {
     int val = gpio_pin_get_dt(&button);
-	breathing_light = BREATHING_LIGHT_OFF; // Disable breathing light when setting RGB color
 
 	printk("%s: Button = %d\n", __func__, val);
 
 /* Enable the following line to change RGB color on button press/release */
 #if 0
+	breathing_light = BREATHING_LIGHT_OFF; // Disable breathing light when setting RGB color
     if (val) {
         rgb_led_set(255,0,0);
     } else {
@@ -144,11 +144,11 @@ int main(void)
 		return 0;
 	}
 
-	// Wait until connected
-	while (!dtr) {
-		uart_line_ctrl_get(dev, UART_LINE_CTRL_DTR, &dtr);
-		k_sleep(K_MSEC(100));
-	}
+	// Uncomment the following to wait until connected
+	// while (!dtr) {
+	// 	uart_line_ctrl_get(dev, UART_LINE_CTRL_DTR, &dtr);
+	// 	k_sleep(K_MSEC(100));
+	// }
 #endif
 
     /* Check that the RGB PWM devices are present*/
