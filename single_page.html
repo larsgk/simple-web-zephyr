@@ -1,10 +1,148 @@
 <!DOCTYPE html>
-<html>
-    <h1>Simple Web Zephyr</h1>
-    <h2 id="status">Not Connected</h2>
-    <button id="connect">CONNECT</button>
-    <input id="colorpicker" type="color">
-</html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Web Zephyr</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #c9d1d9;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #58a6ff;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+            color: #8b949e;
+        }
+
+        .align-horizontal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            background-color: #161b22;
+            border-radius: 5px; 
+        }
+
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 0;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        div.container {
+            text-align: center;
+            background-color: #161b22;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @media only screen and (max-width: 768px) {
+            body {
+                justify-content: flex-start;
+                padding: 2em;
+            }
+
+            div.container {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            button {
+                font-size: 0.8em;
+                padding: 8px 16px;
+                margin-bottom: 0.5em;
+            }
+
+            input[type="color"] {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 1em;
+            }
+
+            div.container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1em;
+            }
+
+            button {
+                font-size: 0.7em;
+                padding: 6px 12px;
+                margin-bottom: 0.3em;
+            }
+
+            input[type="color"] {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Web Zephyr</h1>
+        <h2 id="status">Not Connected</h2>
+        <div class="align-horizontal">
+            <button id="connect">CONNECT</button>
+            <input id="colorpicker" type="color">
+        </div>
+    </div>
+</body>
+
 
 <script>
 
