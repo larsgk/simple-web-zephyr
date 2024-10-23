@@ -1,8 +1,65 @@
 <!DOCTYPE html>
-<html>
-    <link rel="stylesheet" href="style.css">
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple Web Zephyr</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #c9d1d9;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #58a6ff;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+            color: #8b949e;
+        }
+
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 1em;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            background-color: #161b22;
+        }
+
+        div.container {
+            text-align: center;
+            background-color: #161b22;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,7 +69,6 @@
         <input id="colorpicker" type="color">
     </div>
 </body>
-</html>
 
 <script>
 
