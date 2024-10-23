@@ -29,19 +29,12 @@
             color: #8b949e;
         }
 
-        button {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 1em;
-        }
-
-        button:hover {
-            background-color: #2ea043;
+        .align-horizontal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; 
+            margin-top: 20px; 
         }
 
         input[type="color"] {
@@ -50,6 +43,22 @@
             border: none;
             cursor: pointer;
             background-color: #161b22;
+            border-radius: 5px; 
+        }
+
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 0;
+        }
+
+        button:hover {
+            background-color: #2ea043;
         }
 
         div.container {
@@ -60,7 +69,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        
         @media only screen and (max-width: 768px) {
             body {
                 justify-content: flex-start;
@@ -121,16 +129,20 @@
             }
         }
 
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Simple Web Zephyr</h1>
         <h2 id="status">Not Connected</h2>
-        <button id="connect">CONNECT</button>
-        <input id="colorpicker" type="color">
+        <div class="align-horizontal">
+            <button id="connect">CONNECT</button>
+            <input id="colorpicker" type="color">
+        </div>
     </div>
 </body>
+
 
 <script>
 
