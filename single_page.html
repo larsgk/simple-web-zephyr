@@ -59,6 +59,68 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
+
+        
+        @media only screen and (max-width: 768px) {
+            body {
+                justify-content: flex-start;
+                padding: 2em;
+            }
+
+            div.container {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            button {
+                font-size: 0.8em;
+                padding: 8px 16px;
+                margin-bottom: 0.5em;
+            }
+
+            input[type="color"] {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 1em;
+            }
+
+            div.container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1em;
+            }
+
+            button {
+                font-size: 0.7em;
+                padding: 6px 12px;
+                margin-bottom: 0.3em;
+            }
+
+            input[type="color"] {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
     </style>
 </head>
 <body>
